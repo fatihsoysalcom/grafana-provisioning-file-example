@@ -1,0 +1,38 @@
+# This file demonstrates Grafana provisioning for data sources and dashboards.
+# It's a YAML file that Grafana reads during startup to configure itself.
+
+# Provisioning data sources
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090 # Replace with your Prometheus URL
+    isDefault: true
+    editable: false
+
+  - name: InfluxDB
+    type: influxdb
+    access: proxy
+    url: http://influxdb:8086 # Replace with your InfluxDB URL
+    database: telegraf
+    editable: false
+
+# Provisioning dashboards
+# Grafana will load dashboards from the specified directory.
+# You would typically place your JSON dashboard definitions here.
+# Example: dashboards:
+#   - name: "My Dashboard"
+#     folder: "My Folder"
+#     type: file
+#     options:
+#       path: /etc/grafana/provisioning/dashboards/my_dashboard.json
+
+# Provisioning alert rules (example for Prometheus)
+# alert_rules:
+#   - name: "High CPU Usage"
+#     folder: "Alerts"
+#     type: file
+#     options:
+#       path: /etc/grafana/provisioning/alerting/cpu_alert.yaml
